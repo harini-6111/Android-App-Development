@@ -1,16 +1,19 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+//    id 'androidx.navigation.safeargs'
+    id 'androidx.navigation.safeargs.kotlin'
+
 }
 
 android {
     namespace 'com.example.basicapp'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.basicapp"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -30,9 +33,28 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    dataBinding{
+        enabled true
+    }
 }
 
 dependencies {
+
+    def nav_version = "2.5.3"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    def life_versions = "1.1.1"
+
+    // Lifecycle components
+    implementation "android.arch.lifecycle:extensions:$life_versions"
+    annotationProcessor "android.arch.lifecycle:compiler:$life_versions"
+
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.0'
